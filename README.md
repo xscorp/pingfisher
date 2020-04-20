@@ -21,4 +21,8 @@ It works by creating a raw socket and listening for ethernet frames on the netwo
 And now you can ping your system from anywhere and it will present you with output as shown below.
 
 ## Screenshots
-![alt text](media/pingfisher_output.png)
+### On normal run
+![](media/pingfisher_output.png)
+
+### With debug option set
+![](media/pingfisher_debug_output.png)
