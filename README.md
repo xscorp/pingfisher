@@ -16,9 +16,11 @@ It works by creating a raw socket and listening for ethernet frames on the netwo
 
 ## Usage:
 * Clone the repository:
+
 ```git clone https://github.com/xscorp/pingfisher.git```
 
 * Execute pingfisher.py:
+
 ```python3 pingfisher.py```
 
 And now you can ping your system from anywhere and it will present you with output as shown below.
