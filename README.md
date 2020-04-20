@@ -21,3 +21,4 @@ It works by creating a raw socket and listening for ethernet frames on the netwo
 And now you can ping your system from anywhere and it will present you with output as shown below.
 
 ## Screenshots
+![Normal mode output]
