@@ -7,7 +7,7 @@ from argparse import ArgumentParser
 PACKET_TAB = "\t"
 
 #parse command line arguments
-parser = ArgumentParser(description="")
+parser = ArgumentParser(description="A command line tool to detect ping requests and replies")
 parser.add_argument("--debug" , "-d" , help="Debug mode" , action = "store_true" , default = False)
 arguments = parser.parse_args()
 
