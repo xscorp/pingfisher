@@ -21,8 +21,16 @@ It works by creating a raw socket and listening for ethernet frames on the netwo
 And now you can ping your system from anywhere and it will present you with output as shown below.
 
 ## Screenshots
-### On normal run
+* ### On normal run
 ![](media/pingfisher_output.png)
 
-### With debug option set
+* ### With debug option set
 ![](media/pingfisher_debug_output.png)
+
+## Problem with localhost
+Yes, I too faced it. On sending one ping request, it's showing two ICMP requests and hence sending two responses. I have no idea why this is happening with localhost IP. The loopback interface might have different inner workings. Please let me know if you have any explaination for that.
+
+### Created by xscorp
+Twitter: [@xscorp7](https://twitter.com/xscorp7 "xscorp7 on Twitter")
+
+Github: [@xscorp](https://github.com/xscorp "xscorp on Github")
