@@ -1,5 +1,8 @@
 # pingfisher
-pingfisher is a tool to capture ICMPv4 and ICMPv6 ping requests and reply.
+
+![](media/logo.png)
+
+Pingfisher is a tool to capture ICMPv4 and ICMPv6 ping requests and reply.
 
 ## Why pingfisher?
 I mainly made it for the purpose of assistence in CTFs. Suppose you have a blind RCE exploit code which accepts commands from you and executes them on target system but doesn't produces any output. To check if it's actually working, probably the easiest method is to ping your system from the remote system through the exploit and capture the ICMP packets in your system through any linux utility like **tcpdump**.
