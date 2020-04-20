@@ -4,10 +4,11 @@ from sys import exit
 from ipaddress import IPv4Address , IPv6Address
 from argparse import ArgumentParser
 
+PACKET_TAB = "\t"
+
 #parse command line arguments
 parser = ArgumentParser(description="")
 parser.add_argument("--debug" , "-d" , help="Debug mode" , action = "store_true" , default = False)
-parser.add_argument("--all" , "-a" , help="Capture all packets(used with -d option)" , action = "store_true" , default = False)
 arguments = parser.parse_args()
 
 #function to print the debug information only when the debug flag is set
@@ -21,8 +22,6 @@ def parse_mac_address(mac_byte):
 	mac_bytes_string = map('{:02x}'.format, mac_byte)
 	mac_address = ':'.join(mac_bytes_string).upper()
 	return mac_address
-
-PACKET_TAB = "\t"
 
 def print_ethernet_frame_info(destination_mac , source_mac , protocol):
 	debug_print("\033[91m====================================================\033[00m")
@@ -65,21 +64,13 @@ while True:
 		if ethernet_frame:
 			destination_mac , source_mac , protocol = unpack("! 6s 6s H" , ethernet_frame[:14])
 			
-			#if "all" flag is set, then debug_print every frame
-			if arguments.all:
-				print_ethernet_frame_info(destination_mac , source_mac , protocol)
-
 			#check if the packet is IPv4 packet
 			if socket.htons(protocol) == 8:
 				ipv4_packet = ethernet_frame[14:]
 				version_header_length = ipv4_packet[0]
 				header_length = (version_header_length & 15) * 4
 				ttl , packet_protocol , source_ip , destination_ip = unpack("! 8x B B 2x 4s 4s" , ipv4_packet[:20])
-				
-				#if "all" flag is set, then debug_print every packet
-				if arguments.all:
-					print_ipv4_packet_info(header_length , ttl , packet_protocol , source_ip , destination_ip)
-				
+								
 				#check if the protocol field inside IPv4 packet is ICMP
 				if packet_protocol == 1:
 					
@@ -102,10 +93,6 @@ while True:
 			elif socket.htons(protocol) == 56710:
 				ipv6_packet = ethernet_frame[14:]
 				version_class_flowLabel , payload_length , next_header , hop_limit , source_ipv6 , destination_ipv6 = unpack("! 4s H B B 16s 16s" , ipv6_packet[:40])
-				
-				#if "all" flag is set, then debug_print every packet
-				if arguments.all:
-					print_ipv6_packet_info(version_class_flowLabel , payload_length , next_header , hop_limit , source_ipv6 , destination_ipv6)
 				
 				#check if it's an ICMPv6 packet
 				if next_header == 58:
